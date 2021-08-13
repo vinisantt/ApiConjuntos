@@ -7,5 +7,5 @@ A = Conjunto("A", 1, 2, (9))
 B = Conjunto("B", 2)
 
 print(A.contem(B))
-#print(B.possui(3))
-#print(A.tamanho())
+print(B.possui(3))
+print(A.tamanho())
