@@ -148,3 +148,31 @@ class Conjunto:
 
         """
         return elemento in self.elementos
+
+    def contem(self, conjunto) -> bool:
+            """
+            Checa se o conjunto chamador contem tal conjunto.
+
+            Parâmetros:
+            - (Conjunto) conjunto: Conjunto que será usado junto ao conjunto chamador.
+
+            Exemplo:
+
+            - A = Conjunto("A", 1, 2, 3, (2, 9))
+            - B = Conjunto("B", (2, 9))
+
+
+            - A.contem(B)
+
+            Saída:
+
+            - True
+
+            """
+            if self.tamanho() < conjunto.tamanho():
+                return False
+            else:
+                for elemento in conjunto.elementos:
+                    if elemento not in self.elementos:
+                        return False
+                return True

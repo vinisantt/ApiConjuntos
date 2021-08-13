@@ -3,9 +3,9 @@ import Conjuntos
 
 Conjunto = Conjuntos.Conjunto
 
-A = Conjunto("A", 1, 2, (2, 9))
+A = Conjunto("A", 1, 2, (9))
 B = Conjunto("B", 2)
 
-print(A.possui((2, 9)))
-print(B.possui(3))
-print(A.tamanho())
+print(A.contem(B))
+#print(B.possui(3))
+#print(A.tamanho())
