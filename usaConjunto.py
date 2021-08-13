@@ -8,3 +8,4 @@ B = Conjunto("B", 2)
 
 print(A.possui((2, 9)))
 print(B.possui(3))
+print(A.tamanho())
