@@ -78,6 +78,17 @@ class Conjunto:
             return conjunto
         print(conjunto)
 
+    def tamanho(self) -> int:
+        """
+        Retorna o tamanho do conjunto.
+        Exemplo:
+        - A = Conjunto("A", 1, 2, 3)
+        - A.tamanho()
+        Saída:
+        - 3
+        """
+        return len(self.elementos)
+
     def atualizaOperacoes(self, nome) -> None:
         """
         Atualiza o dicionário de operações, cache.
