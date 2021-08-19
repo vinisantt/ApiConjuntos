@@ -131,7 +131,7 @@ class Conjunto:
 
     def possui(self, elemento) -> bool:
         """
-        Checa se o elemento passado pertence ao conjunto chamador.
+        Checa se o elemento passado possui no conjunto chamador.
 
         Parâmetros:
         - (String / int) elemento: Elemento que será verificado.
@@ -140,7 +140,7 @@ class Conjunto:
 
         - A = Conjunto("A", 1, 2, 3)
 
-        - A.pertence(2)
+        - A.possui(2)
 
         Saída:
 
@@ -177,15 +177,15 @@ class Conjunto:
                         return False
                 return True
 
-    def estaVazio(self) -> bool:
+    def eh_vazio(self) -> bool:
         """
-        Checa se o conjunto está vazio.
+        Checa se o conjunto é vazio.
 
         Exemplo:
 
         - A = Conjunto("A")
 
-        - A.estaVazio()
+        - A.eh_vazio()
 
         Saída:
 
