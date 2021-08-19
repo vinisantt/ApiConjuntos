@@ -62,12 +62,12 @@ A.tamanho().imprimir()
 3
 ```
 
-## Identificar se um Conjunto contém um elemento:
-Para verificarmos se um elemento pertence à outro precisamos utilizar a função pertence, passando como parâmetro o elemento no qual deseja verificar, ao fazer isso, esta funcionalidade percorre sua lista de elementos à procura de um que seja igual ao elemento passado como parâmetro, caso encontre, retorna True (verdadeiro), caso não, retorna False (falso).
+## Identificar se um Conjunto possui um elemento:
+Para verificarmos se um elemento possui na lista precisamos utilizar a função possui, passando como parâmetro o elemento no qual deseja verificar, ao fazer isso, esta funcionalidade percorre sua lista de elementos à procura de um que seja igual ao elemento passado como parâmetro, caso encontre, retorna True (verdadeiro), caso não, retorna False (falso).
 ### Exemplo:
 ```
 A = Conjunto(“A”, 3, 4, 5)
-print(A.pertence(5))
+print(A.possui(5))
 ```
 #### Retorno:
 ```
@@ -87,6 +87,22 @@ print(A.contem(B))
 True
 ```
 *Para definir se um Conjunto é Subconjunto de um outro Conjunto deve verificar Se todos os elementos de um conjunto 𝐴 também são elementos de um conjunto 𝐵, então 𝐴 está contido em 𝐵, o que é representado por: 𝐴 ⊆ 𝐵. Isso também é lido como 𝐴 é subconjunto de 𝐵.*
+
+## Verificar se um Conjunto esta Vazio
+Para verificar se um Conjunto esta Vazio, deve chamar a função eh_vazio(), e passar como parâmetro o Conjunto que queira verificar. Essa função retorna um boolean, se o Conjunto passado no parâmetro for vazio, retornar true, caso contrário retorna false.
+### Exemplo:
+```
+A = Conjunto("A", 1, 2, 3, (2, 9))
+B = Conjunto("B", (2, 9))
+print(A.eh_vazio())
+```
+#### Retorno:
+```
+False
+```
+
+
+
 
 ## Integrantes:
 - Jonhtan Mota Dos Reis - [jomrs](https://github.com/jomrs)
