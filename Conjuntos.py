@@ -150,32 +150,32 @@ class Conjunto:
         return elemento in self.elementos
 
     def contem(self, conjunto) -> bool:
-            """
-            Checa se o conjunto chamador contem tal conjunto.
+        """
+        Checa se o conjunto chamador contem tal conjunto.
 
-            Parâmetros:
-            - (Conjunto) conjunto: Conjunto que será usado junto ao conjunto chamador.
+        Parâmetros:
+        - (Conjunto) conjunto: Conjunto que será usado junto ao conjunto chamador.
 
-            Exemplo:
+        Exemplo:
 
-            - A = Conjunto("A", 1, 2, 3, (2, 9))
-            - B = Conjunto("B", (2, 9))
+        - A = Conjunto("A", 1, 2, 3, (2, 9))
+        - B = Conjunto("B", (2, 9))
 
 
-            - A.contem(B)
+        - A.contem(B)
 
-            Saída:
+        Saída:
 
-            - True
+        - True
 
-            """
-            if self.tamanho() < conjunto.tamanho():
-                return False
-            else:
-                for elemento in conjunto.elementos:
-                    if elemento not in self.elementos:
-                        return False
-                return True
+        """
+        if self.tamanho() < conjunto.tamanho():
+            return False
+        else:
+            for elemento in conjunto.elementos:
+                if elemento not in self.elementos:
+                    return False
+            return True
 
     def eh_vazio(self) -> bool:
         """
@@ -215,5 +215,63 @@ class Conjunto:
         """
         if self.tamanho() == conjunto.tamanho():
             return self.contem(conjunto)
+        return
+
+    def contem_propriamente(self, conjunto) -> bool:
+        """
+        Checa se o conjunto chamador contem propriamente tal conjunto.
+        Parâmetros:
+        - (Conjunto) conjunto: Conjunto que será usado junto ao conjunto chamador.
+        Exemplo:
+        - A = Conjunto("A", 1, 2, 3, (2, 9))
+        - B = Conjunto("B", (2, 9))
+        - A.contem_propriamente(B)
+        - A.contem_propriamente(A)
+        Saída:
+        - True
+        - False
+        """
+        if self.contem(conjunto):
+            return self.tamanho() > conjunto.tamanho()
         return False
 
+    def uniao(self, conjunto) -> object:
+        """
+        Une dois conjuntos, retornando um novo conjunto contendo os elementos de ambos.
+        Parâmetros:
+        - (Conjunto) conjunto: Os elementos deste conjunto serão unidos ao conjunto chamador.
+        Exemplo:
+        - A = Conjunto("A", 1, 2, 3)
+        - B = Conjunto("B", 4, 5, 6)
+        - A.uniao(B)
+        Saída:
+        - Conjunto("A U B", 1, 2, 3, 4, 5, 6)
+        """
+        uniao = Conjunto(f"{self.nome} ∪ {conjunto.nome}")
+
+        if self.igual(conjunto):
+            uniao.elementos = self.elementos
+            operacoes[f"{self.nome} ∪ {conjunto.nome}"] = uniao
+
+        elif uniao.nome not in operacoes and uniao.nome[::-1] not in operacoes:
+            if not conjunto.estaVazio() and not self.estaVazio():
+                if conjunto.tamanho() > self.tamanho():
+                    uniao.elementos = conjunto.elementos
+                    for elemento in self.elementos:
+                        uniao.inserir(elemento, True)
+                else:
+                    uniao.elementos = self.elementos
+                    for elemento in conjunto.elementos:
+                        uniao.inserir(elemento, True)
+            else:
+                if conjunto.estaVazio() and not self.estaVazio():
+                    uniao.elementos = self.elementos
+                else:
+                    uniao.elementos = conjunto.elementos
+
+            operacoes[f"{self.nome} ∪ {conjunto.nome}"] = uniao
+
+        try:
+            return operacoes[uniao.nome]
+        except KeyError:
+            return operacoes[uniao.nome[::-1]]

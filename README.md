@@ -114,6 +114,39 @@ print(A.eh_igual())
 False
 ```
 
+## Identificar se um Conjunto é Subconjunto próprio de outro:
+Para verificar se um Conjunto  é Subconjunto próprio de outro, utilizamos a função contemProp, que recebe como parâmetro um Conjunto, que ao ser chamada verifica primeiramente se o Conjunto passado é um subconjunto do elemento que chamou a função utilizando a função contem(Conjunto), caso não seja já retorna False (falso), caso não verifica se o tamanho dos dois conjuntos são iguais, caso seja, retorna False (falso), caso não retorna True (verdadeiro, é um subconjunto próprio).
+### Exemplo:
+```
+A = Conjunto("A", 1, 2, 3, (2, 9))
+B = Conjunto("B", (2, 9))
+print(A.contem_propriamente(B))
+print(B.contem_propriamente(A))
+```
+#### Retorno: 
+```
+True
+False
+```
+*Um subconjunto próprio é quando um Conjunto é subconjunto de outro e há alguma diferença entre a quantidade de elementos do Conjunto que chama a função com o Conjunto passado como parâmetro.*
+
+## União de Conjuntos:
+Para fazer a união entre dois conjuntos deve utilizar a função união(), como parâmetro deve ser passado o conjunto que deseja fazer a união. A função verifica se o Conjunto passado é igual ao que foi instanciado, verifica se está vazia e depois executa um laço de repetição que chama a função inserir() e passa os Elementos como parâmetro,, que por sua vez faz a verificação se o Elemento contém no Conjunto.
+### Exemplo:
+```
+A = Conjunto("A", 1, 2, 3, (2, 9))
+B = Conjunto("B", (2, 9))
+C = A.uniao(B)
+C.imprimir()
+```
+### Retorno:
+```
+A ∪ B = {1,2,3,{9,2}}
+```
+*Sejam 𝐴 e 𝐵 dois conjuntos. A união entre eles, 𝐴 ∪ 𝐵, é definida como: 
+𝐴 ∪ 𝐵 = {𝑥 ∣ 𝑥 ∈ 𝐴 ∨ 𝑥 ∈ 𝐵}. 
+Considerando a lógica, o conjunto 𝐴 pode ser definido como 𝑥 ∈ 𝐴 e o conjunto 𝐵 pode ser definido como 𝑥 ∈ 𝐵. Ou seja, a propriedade de pertinência é utilizada para indicar uma proposição lógica.
+
 
 ## Integrantes:
 - Jonhtan Mota Dos Reis - [jomrs](https://github.com/jomrs)
