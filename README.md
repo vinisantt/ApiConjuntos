@@ -101,7 +101,7 @@ print(A.eh_vazio())
 False
 ```
 
-## Verificar se um Conjunto esta Vazio
+## Verificar se 2 Conjuntos são Iguais
 Para verificar se um Conjunto esta é Igual a outro, deve chamar a função eh_igual, e passar como parâmetro os 2 Conjunto que queira verificar. Essa função retorna um boolean, se os Conjuntos passados nos parâmetros forem iguais, retornar true, caso contrário retorna false.
 ### Exemplo:
 ```
