@@ -194,3 +194,26 @@ class Conjunto:
         """
         return self.tamanho() == 0
 
+    def eh_igual(self, conjunto) -> bool:
+        """
+        Checa se um conjunto é igual ao outro.
+
+        Parâmetros:
+        - (Conjunto) conjunto: Conjunto que será comparado ao conjunto chamador.
+
+        Exemplo:
+
+        - A = Conjunto("A", 1, 2, 3)
+        - B = Conjunto("B", 4, 5, 6)
+
+        - A.eh_igual(B)
+
+        Saída:
+
+        - False
+
+        """
+        if self.tamanho() == conjunto.tamanho():
+            return self.contem(conjunto)
+        return False
+
