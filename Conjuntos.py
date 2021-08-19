@@ -176,3 +176,21 @@ class Conjunto:
                     if elemento not in self.elementos:
                         return False
                 return True
+
+    def estaVazio(self) -> bool:
+        """
+        Checa se o conjunto está vazio.
+
+        Exemplo:
+
+        - A = Conjunto("A")
+
+        - A.estaVazio()
+
+        Saída:
+
+        - True
+
+        """
+        return self.tamanho() == 0
+
