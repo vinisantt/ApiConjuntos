@@ -249,12 +249,12 @@ class Conjunto:
         """
         uniao = Conjunto(f"{self.nome} ∪ {conjunto.nome}")
 
-        if self.igual(conjunto):
+        if self.eh_igual(conjunto):
             uniao.elementos = self.elementos
             operacoes[f"{self.nome} ∪ {conjunto.nome}"] = uniao
 
         elif uniao.nome not in operacoes and uniao.nome[::-1] not in operacoes:
-            if not conjunto.estaVazio() and not self.estaVazio():
+            if not conjunto.eh_vazio() and not self.eh_vazio():
                 if conjunto.tamanho() > self.tamanho():
                     uniao.elementos = conjunto.elementos
                     for elemento in self.elementos:
@@ -264,7 +264,7 @@ class Conjunto:
                     for elemento in conjunto.elementos:
                         uniao.inserir(elemento, True)
             else:
-                if conjunto.estaVazio() and not self.estaVazio():
+                if conjunto.eh_vazio() and not self.eh_vazio():
                     uniao.elementos = self.elementos
                 else:
                     uniao.elementos = conjunto.elementos
@@ -275,3 +275,58 @@ class Conjunto:
             return operacoes[uniao.nome]
         except KeyError:
             return operacoes[uniao.nome[::-1]]
+
+    def intersecao(self, conjunto) -> object:
+        """
+        Retorna um novo conjunto contendo os elementos de que fazem partes de ambos.
+        Parâmetros:
+        - (Conjunto) conjunto: Conjunto que será usado na interseção com o conjunto chamador.
+        Exemplo:
+        - A = Conjunto("A", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+        - B = Conjunto("B", 0, 2, 4, 6, ...) 
+        - A.intersecao(B)
+        Saída:
+        - Conjunto("A ^ B", 0, 2, 4, 6, 8)
+        """
+        intersecao = Conjunto(f"{self.nome} ∩ {conjunto.nome}")
+
+        if self.eh_igual(conjunto):
+            intersecao.elementos = self.elementos
+            operacoes[f"{self.nome} ∩ {conjunto.nome}"] = intersecao
+
+        elif intersecao.nome not in operacoes and intersecao.nome[::-1] not in operacoes:
+            if not conjunto.eh_vazio() and not self.eh_vazio():
+                for elemento in conjunto.elementos:
+                    if self.pertence(elemento):
+                        intersecao.inserir(elemento)
+                operacoes[f"{self.nome} ∩ {conjunto.nome}"] = intersecao
+        try:
+            return operacoes[intersecao.nome]
+        except KeyError:
+            return operacoes[intersecao.nome[::-1]]
+
+    def diferenca(self, conjunto) -> object:
+        """
+        Realiza a diferença entre dois conjuntos, retornando um novo conjunto com os elementos resultantes da diferença.
+        Parâmetros:
+        - (Conjunto) conjunto: Conjunto que será usado na diferença com o conjunto chamador.
+        Exemplo:
+        - X = Conjunto("X", 4, 5)
+        - Y = Conjunto("Y", 5, 6)
+        - X.diferenca(Y)
+        Saída:
+        - Conjunto("X - Y", 4)
+        """
+
+        diferenca = Conjunto(f"{self.nome} - {conjunto.nome}")
+
+        if diferenca.nome not in operacoes:
+            if self.eh_vazio() == False and conjunto.eh_vazio() == False:
+                for elemento in self.elementos:
+                    if elemento not in conjunto.elementos:
+                        diferenca.inserir(elemento, True)
+                operacoes[f"{diferenca.nome}"] = diferenca
+        try:
+            return operacoes[diferenca.nome]
+        except KeyError:
+            return {}
