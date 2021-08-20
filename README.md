@@ -147,6 +147,33 @@ A ∪ B = {1,2,3,{9,2}}
 𝐴 ∪ 𝐵 = {𝑥 ∣ 𝑥 ∈ 𝐴 ∨ 𝑥 ∈ 𝐵}. 
 Considerando a lógica, o conjunto 𝐴 pode ser definido como 𝑥 ∈ 𝐴 e o conjunto 𝐵 pode ser definido como 𝑥 ∈ 𝐵. Ou seja, a propriedade de pertinência é utilizada para indicar uma proposição lógica.
 
+## Interseção de Conjuntos:
+Para obter a interseção utilizamos a função intersecao(Conjunto), que recebe como parâmetro um Conjunto, que ao ser chamada primeiramente verifica se os dois conjuntos são iguais, caso sejam, retorna um Conjunto contendo os elementos do Conjunto que chamou a função. Caso não sejam iguais, a função verifica se essa operação já foi feita (se consta na lista de operações ), caso tenha sido feita, ela recupera esse Conjunto armazenado e retorna. 
+Caso a operação nunca tenha sido realizada e nenhum dos Conjuntos estejam vazios ela percorre a lista de elementos do Conjunto passado como parâmetro e verifica se esses elementos pertencem ao Conjunto que chamou a função, se sim esses elementos são adicionados ao Conjunto intersecao. Após terminar de percorrer, a lista de operações é incrementada com a operação atual possuindo como valor o conjunto intersecao. Isso ocorre para que na próxima vez que a mesma operação seja chamada com os mesmos Conjuntos não seja repetida.
+### Exemplo:
+```
+A = Conjunto("A", 1, 2, 3, (2, 9))
+B = Conjunto("B", (2, 9))
+A.intersecao(B).imprimir()
+```
+### Retorno:
+```
+A ∩ B = {{2,9}}
+```
+
+## Obter a diferença entre dois Conjuntos:
+Para obter a diferença entre dois conjuntos nós utilizamos a função diferenca(), que recebe como parâmetro um outro Conjunto, ao ser chamada verifica se essa operação já foi feita (se consta no dicionário de operações ), caso tenha sido feita, ela recupera esse Conjunto armazenado e retorna. Caso não, ele cria um novo Conjunto e adiciona os Elementos que são diferentes do Conjunto instanciado com o Conjunto passado como parâmetro.
+### Exemplo:
+```
+X = Conjunto("X", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+Z = Conjunto("Z", 2, 4, 6, 8)
+Y = X.diferenca(Z).imprimir()
+```
+### Retorno:
+```
+X - Z = {0,1,3,5,7,9}
+```
+
 
 ## Integrantes:
 - Jonhtan Mota Dos Reis - [jomrs](https://github.com/jomrs)
