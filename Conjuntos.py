@@ -1,7 +1,25 @@
+from __future__ import annotations
 import itertools
+import re
+
 
 operacoes = {}  # Operações feitas são guardadas aqui, para motivos de otimização
 universo = []   # Conjunto que contém todos os elementos já criados
+
+
+def remove_virgulas(texto: str) -> str: return texto.replace(",", "")
+
+
+def adiciona_chave_inicial(texto: str) -> str: return texto.replace("(", "{")
+
+
+def adiciona_chave_final(texto: str) -> str: return texto.replace(")", "}")
+
+
+def tratar_conjunto(conjuntos: str) -> str:
+    return adiciona_chave_final(
+        adiciona_chave_inicial(conjuntos)
+    )
 
 
 class Conjunto:
@@ -283,7 +301,7 @@ class Conjunto:
         - (Conjunto) conjunto: Conjunto que será usado na interseção com o conjunto chamador.
         Exemplo:
         - A = Conjunto("A", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-        - B = Conjunto("B", 0, 2, 4, 6, ...) 
+        - B = Conjunto("B", 0, 2, 4, 6, ...)
         - A.intersecao(B)
         Saída:
         - Conjunto("A ^ B", 0, 2, 4, 6, 8)
@@ -305,7 +323,7 @@ class Conjunto:
         except KeyError:
             return operacoes[intersecao.nome[::-1]]
 
-    def diferenca(self, conjunto) -> object:
+    def diferenca(self, conjunto) -> Conjunto:
         """
         Realiza a diferença entre dois conjuntos, retornando um novo conjunto com os elementos resultantes da diferença.
         Parâmetros:
@@ -329,4 +347,37 @@ class Conjunto:
         try:
             return operacoes[diferenca.nome]
         except KeyError:
-            return {}
+            return Conjunto()
+
+    def conjunto_das_partes(self) -> Conjunto:
+        """
+        Retorna um novo conjunto contendo as combinações possíveis dos elementos de um conjunto.
+
+        Exemplo:
+
+        - X = Conjunto("X", 5, 4)
+
+        - X.conjuntoDasPartes().imprimir()
+
+        - Saída em tela:
+        - - {}, {5}, {4}, {5, 4}
+
+        """
+
+        elementos = self.elementos
+        conjunto_das_partes = Conjunto("Conjunto das Partes")
+
+        for indice in range(0, len(elementos) + 1):
+            combinacoes = list(itertools.combinations(elementos, indice))
+            for conjuntos in combinacoes:
+                try:
+                    conjuntos = tratar_conjunto(str(conjuntos))
+                    ultimo_caractere = conjuntos[-2]
+                    if ultimo_caractere == ',':
+                        conjunto_das_partes.inserir(remove_virgulas(conjuntos))
+                    else:
+                        conjunto_das_partes.inserir(conjuntos)
+                except IndexError:
+                    pass
+
+        return conjunto_das_partes

@@ -87,3 +87,27 @@ class ConjuntosTest(unittest.TestCase):
         conjunto_a = Conjunto('A', 1, 2, 3)
         conjunto_b = Conjunto('B', 1, 2)
         assert not conjunto_b.contem_propriamente(conjunto_a)
+
+    def test_conjunto_das_partes_deve_retornar_conjunto_contendo_combinacao_de_elementos_de_um_conjunto(
+            self):
+        conjunto_parametro = Conjunto('A', 1, 2, 3)
+        conjunto_esperado = Conjunto(
+            'Conjunto das Partes', '{}', '{1}', '{2}', '{3}', '{1, 2}', '{1, 3}', '{2, 3}', '{1, 2, 3}')
+
+        assert conjunto_parametro.conjunto_das_partes(
+        ).elementos == conjunto_esperado.elementos
+
+    def test_conjunto_das_partes_deve_retornar_um_conjunto(self):
+        assert isinstance(
+            Conjunto(
+                'A',
+                1,
+                2,
+                3).conjunto_das_partes(),
+            Conjunto
+        )
+
+    def test_conjunto_das_partes_deve_retornar_conjunto_vazio_se_conjunto_parametro_for_vazio(
+            self):
+        assert Conjunto('A').conjunto_das_partes(
+        ).elementos == Conjunto('Conjunto das Partes', '{}').elementos
