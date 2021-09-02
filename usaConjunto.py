@@ -6,6 +6,7 @@ Conjunto = Conjuntos.Conjunto
 
 A = Conjunto("A", 1, 2, (2, 9))
 B = Conjunto("B")
+C = Conjunto("C", 4, 8, 12)
 
 # A.inserir(B)
 
@@ -24,3 +25,4 @@ B = Conjunto("B")
 # B.uniao(A).imprimir()
 
 pp.pprint(A.conjunto_das_partes().elementos)
+pp.pprint(A.produto_cartesiano(C).elementos)

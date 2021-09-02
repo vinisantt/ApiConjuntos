@@ -381,3 +381,25 @@ class Conjunto:
                     pass
 
         return conjunto_das_partes
+
+    def produto_cartesiano(self, conjunto) -> Conjunto:
+        """
+        Retorna um novo conjunto contendo o produto cartesiano entre dois conjuntos.
+
+        Exemplo:
+
+        - X = Conjunto("X", 5, 4)
+        - Y = Conjunto("Y", 8, 2)
+
+        - X.produto_cartesiano(Y)
+
+        - Saída:
+        - Conjunto("X * Y", (5,8), (5,2), (4,8), (4,2))
+        """
+        produto_operacao = itertools.product(self.elementos, conjunto.elementos)
+        conjunto_cartesiano = Conjunto("{self.nome} * {conjunto.nome}")
+        for produto_atual in produto_operacao:
+            conjunto_cartesiano.inserir(produto_atual)
+
+        return conjunto_cartesiano
+        
