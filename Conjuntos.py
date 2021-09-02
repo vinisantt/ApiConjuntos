@@ -312,12 +312,14 @@ class Conjunto:
         elif intersecao.nome not in operacoes and intersecao.nome[::-1] not in operacoes:
             if not conjunto.eh_vazio() and not self.eh_vazio():
                 for elemento in conjunto.elementos:
-                    if self.pertence(elemento):
+                    if self.possui(elemento):
                         intersecao.inserir(elemento)
                 operacoes[f"{self.nome} ∩ {conjunto.nome}"] = intersecao
         try:
             return operacoes[intersecao.nome]
         except KeyError:
+            if conjunto.eh_vazio():
+                return conjunto
             return operacoes[intersecao.nome[::-1]]
 
     def diferenca(self, conjunto) -> Conjunto:
