@@ -1,9 +1,10 @@
 # from pylatex import Document, Section
 import Conjuntos
+import pprint as pp
 
 Conjunto = Conjuntos.Conjunto
 
-A = Conjunto("A", 2, 10, 13)
+A = Conjunto("A", 1, 2, (2, 9))
 B = Conjunto("B")
 
 # A.inserir(B)
@@ -22,5 +23,4 @@ B = Conjunto("B")
 # A.intersecao(B).imprimir()
 # B.uniao(A).imprimir()
 
-B.conjunto_das_partes().imprimir()
-print(B.conjunto_das_partes().elementos)
+pp.pprint(A.conjunto_das_partes().elementos)

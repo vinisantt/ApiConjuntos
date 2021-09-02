@@ -5,7 +5,12 @@
 - Inserir um Elemento em um Conjunto
 - Obter o tamanho de um Conjunto
 - Identificar se um conjunto contém um Elemento
-- Identificar se um Conjunto é Subconjunto de outro
+- Identificar se um Conjunto é Subconjunto de 
+- União de Conjuntos
+- Interseção de Conjuntos
+- Encontrar o complemento de um Conjunto
+- Obter a diferença entre dois Conjuntos
+- Encontrar o Conjunto das partes de um Conjunto
 
 ## Baixando a API e dependências.
 - Fazer o clone do repositório:
@@ -13,6 +18,11 @@
 git clone https://github.com/vinisantt/ApiConjuntos.git
 ```
 
+- Executar testes de unidade:
+
+```
+python -m unittest discover tests -v
+```
 
 # Exemplos de utilização:
 Para usar a API, abra o arquivo `usaConjunto.py` em um editor de código de sua preferencia.
@@ -172,6 +182,19 @@ Y = X.diferenca(Z).imprimir()
 ### Retorno:
 ```
 X - Z = {0,1,3,5,7,9}
+```
+## Encontrar o Conjunto das partes de um Conjunto:
+Para obter o conjunto das partes de um Conjunto  utilizamos a função conjunto_das_partes(), que não recebe nenhum parâmetro, e quando chamada retorna um Conjunto cujos elementos são todas as combinações possíveis dos elementos do Conjunto que chamou a função.
+### Exemplo:
+```
+A = Conjunto("A", 1, 2, (2, 9))
+A.conjunto_das_partes()
+```
+## Retorno:
+```
+<Conjunto object>
+- Conjunto.nome = 'Conjunto das Partes'
+- Conjunto.elementos = [{}, {1}, {2}, {{2 9}}, {1, 2}, {1, {2, 9}}, {2, {2, 9}}, {1, 2, {2, 9}}]
 ```
 
 
