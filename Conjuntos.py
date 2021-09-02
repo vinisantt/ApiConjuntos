@@ -230,7 +230,7 @@ class Conjunto:
         """
         if self.tamanho() == conjunto.tamanho():
             return self.contem(conjunto)
-        return
+        return False
 
     def contem_propriamente(self, conjunto) -> bool:
         """
