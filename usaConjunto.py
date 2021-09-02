@@ -6,7 +6,7 @@ Conjunto = Conjuntos.Conjunto
 
 A = Conjunto("A", 1, 2, (2, 9))
 B = Conjunto("B")
-C = Conjunto("C", 4, 8, 12)
+C = Conjunto("C")
 
 # A.inserir(B)
 

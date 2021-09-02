@@ -111,3 +111,27 @@ class ConjuntosTest(unittest.TestCase):
             self):
         assert Conjunto('A').conjunto_das_partes(
         ).elementos == Conjunto('Conjunto das Partes', '{}').elementos
+
+    def test_produto_cartesiano_deve_retornar_um_conjunto(self):
+        assert isinstance(
+            Conjunto(
+                'A',
+                1,
+                2,
+                4
+            ).produto_cartesiano(Conjunto(
+                'B',
+                7,
+                12,
+                (4,18)
+            )),
+            Conjunto
+        )
+
+    def test_produto_cartesiano_produto_deve_ser_maior_que_o_conjunto_base(self):
+        ConjuntoA = Conjunto('A', 1, 4, 6)
+        ConjuntoB = Conjunto('C', 4, 6, 8)
+        assert ConjuntoA.produto_cartesiano(ConjuntoB).tamanho() > ConjuntoA.tamanho()
+
+    def test_produto_cartesiano_quando_segundo_conjunto_passado_for_vazio_retornar_proprio_conjunto(self):
+        assert Conjunto('A', 4, 5, 12).produto_cartesiano(Conjunto('B')).elementos == Conjunto('A', 4, 5, 12).elementos

@@ -396,8 +396,11 @@ class Conjunto:
         - Saída:
         - Conjunto("X * Y", (5,8), (5,2), (4,8), (4,2))
         """
+        if conjunto.eh_vazio(): return self
+
         produto_operacao = itertools.product(self.elementos, conjunto.elementos)
         conjunto_cartesiano = Conjunto("{self.nome} * {conjunto.nome}")
+        
         for produto_atual in produto_operacao:
             conjunto_cartesiano.inserir(produto_atual)
 
