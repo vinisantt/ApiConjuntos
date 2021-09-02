@@ -197,6 +197,19 @@ A.conjunto_das_partes()
 - Conjunto.elementos = [{}, {1}, {2}, {{2 9}}, {1, 2}, {1, {2, 9}}, {2, {2, 9}}, {1, 2, {2, 9}}]
 ```
 
+## Produto Cartesiano entre os Conjuntos:
+Para obter-se o produto cartesiano entre dois conjuntos utilizamos o método produto_cartesiano(), que recebe como parâmetro o conjunto para se obter o produto de operação, com isso retornado a relação entre ele e o conjunto chamados da função.
+### Exemplo:
+```
+A = Conjunto("A", 1, 2, (4, 22))
+B = Conjunto("B", 4, 3)
+C = A.produto_cartesiano(B)
+```
+## Retorno
+```
+<Conjunto object>
+- Conjunto.elementos = [(1, 4), (1, 3), (2, 4), (2, 3), ((4, 22), 4), ((4, 22), 3)]
+```
 
 ## Integrantes:
 - Jonhtan Mota Dos Reis - [jomrs](https://github.com/jomrs)
