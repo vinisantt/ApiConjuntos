@@ -1,6 +1,5 @@
 from __future__ import annotations
 import itertools
-import re
 
 
 operacoes = {}  # Operações feitas são guardadas aqui, para motivos de otimização
@@ -49,17 +48,17 @@ class Conjunto:
                 if i not in universo:
                     universo.append(i)
 
-    def imprimir(self, operacao=False) -> str:
+    def string(self) -> str:
         """
-        Imprime o conjunto chamador.
+        Retorna o conjunto chamador como uma string.
 
         Exemplo:
 
         - A = Conjunto("A", 1, 2, 3)
 
-        - A.imprimir()
+        - A.string()
 
-        Saída:
+        Retorno:
 
         - A = {1,2,3}
 
@@ -76,12 +75,12 @@ class Conjunto:
                         complementar = "{"
                         # necessario conversao de tipo
                         lista = list(elemento)
-                        for ele in lista:
+                        for e in lista:
                             # caso n seja o ultimo
-                            if ele != lista[-1]:
-                                complementar += str(ele) + ","
+                            if e != lista[-1]:
+                                complementar += str(e) + ","
                             else:
-                                complementar += str(ele) + "},"
+                                complementar += str(e) + "},"
                         conjunto += complementar
                     else:
                         conjunto += "{},"
@@ -92,9 +91,7 @@ class Conjunto:
         conjunto = conjunto.replace(
             "[", "").replace("]", "").replace("'", "") + "}"
 
-        if operacao:
-            return conjunto
-        print(conjunto)
+        return conjunto
 
     def tamanho(self) -> int:
         """
@@ -357,7 +354,7 @@ class Conjunto:
 
         - X = Conjunto("X", 5, 4)
 
-        - X.conjuntoDasPartes().imprimir()
+        - X.conjuntoDasPartes().string()
 
         - Saída em tela:
         - - {}, {5}, {4}, {5, 4}
@@ -396,13 +393,14 @@ class Conjunto:
         - Saída:
         - Conjunto("X * Y", (5,8), (5,2), (4,8), (4,2))
         """
-        if conjunto.eh_vazio(): return self
+        if conjunto.eh_vazio():
+            return self
 
-        produto_operacao = itertools.product(self.elementos, conjunto.elementos)
+        produto_operacao = itertools.product(
+            self.elementos, conjunto.elementos)
         conjunto_cartesiano = Conjunto("{self.nome} * {conjunto.nome}")
-        
+
         for produto_atual in produto_operacao:
             conjunto_cartesiano.inserir(produto_atual)
 
         return conjunto_cartesiano
-        

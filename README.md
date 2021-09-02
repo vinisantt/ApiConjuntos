@@ -3,6 +3,7 @@
 ## Funcionalidades:
 - Inserir um Conjunto
 - Inserir um Elemento em um Conjunto
+- Obter um Conjunto como string
 - Obter o tamanho de um Conjunto
 - Identificar se um conjunto contém um Elemento
 - Identificar se um Conjunto é Subconjunto de 
@@ -48,12 +49,12 @@ A.inserir(4)
 ```
 *Os Elementos de um Conjunto não se repetem, então essa funcionalidade além de adicionar os novos Elementos no Conjunto, ela também verifica se o Elemento Contém no conjunto.*
 
-## Imprimir um Conjunto:
+## Obter um Conjunto como string:
 Para visualizar o Conjunto basta chamar a função imprimir(), ela não requer nenhum parâmetro e retorna a impressão do Conjunto.
 ### Exemplo:
 ```
 A = Conjunto("A", 5, 3, 1)
-A.imprimir()
+A.string()
 ```
 #### Retorno:
 ```

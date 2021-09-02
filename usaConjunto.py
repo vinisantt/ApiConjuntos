@@ -21,8 +21,8 @@ C = Conjunto("C")
 # print(A.eh_igual(B))
 
 # # Interseção e União
-# A.intersecao(B).imprimir()
-# B.uniao(A).imprimir()
+# A.intersecao(B).string()
+# B.uniao(A).string()
 
-pp.pprint(A.conjunto_das_partes().elementos)
-pp.pprint(A.produto_cartesiano(C).elementos)
+# pp.pprint(A.conjunto_das_partes().elementos)
+# pp.pprint(A.produto_cartesiano(C).elementos)
