@@ -425,11 +425,17 @@ class Conjunto:
         if conjunto.eh_vazio():
             return self
 
-        produto_operacao = itertools.product(
-            self.elementos, conjunto.elementos)
+        produto_operacao = itertools.product(self.elementos, conjunto.elementos)
         conjunto_cartesiano = Conjunto(f"{self.nome} * {conjunto.nome}")
 
         for produto_atual in produto_operacao:
-            conjunto_cartesiano.inserir(produto_atual)
+            if isinstance(produto_atual[0], Conjunto) and isinstance(produto_atual[1], Conjunto):
+                conjunto_cartesiano.inserir(f"{{{{{produto_atual[0].elementos}}},{{{produto_atual[1].elementos}}}}}")
+            elif isinstance(produto_atual[0], Conjunto) and not isinstance(produto_atual[1], Conjunto):
+                conjunto_cartesiano.inserir(f"{{{produto_atual[0].elementos}}},{produto_atual[1]}}}")
+            elif not isinstance(produto_atual[0], Conjunto) and isinstance(produto_atual[1], Conjunto):
+                conjunto_cartesiano.inserir(f"{{{{{produto_atual[0]}}},{{{produto_atual[1].elementos}}}}}")
+            else:
+                conjunto_cartesiano.inserir(produto_atual)
 
         return conjunto_cartesiano
