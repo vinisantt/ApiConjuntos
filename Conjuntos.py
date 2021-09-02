@@ -322,6 +322,33 @@ class Conjunto:
                 return conjunto
             return operacoes[intersecao.nome[::-1]]
 
+    def complemento(self) -> Conjunto:
+        """
+        Retorna o conjunto complementar.
+
+        Parâmetros:
+        - (Conjunto) conjunto: Conjunto que será usado para complementar o conjunto chamador.
+
+        Exemplo:
+
+        - X = Conjunto("X", 4, 5)
+        - Y = Conjunto("Y", 5, 6)
+        - U = Conjunto("U", 4, 5, 6)
+
+
+        - X.complementar(Y)
+
+        Saída:
+
+        - Conjunto("~X", 6)
+
+        """
+        complemento = Conjunto(f"~{self.nome}")
+        for elemento in universo:
+            if elemento not in self.elementos:
+                complemento.inserir(elemento, True)
+        return complemento
+
     def diferenca(self, conjunto) -> Conjunto:
         """
         Realiza a diferença entre dois conjuntos, retornando um novo conjunto com os elementos resultantes da diferença.
