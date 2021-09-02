@@ -427,7 +427,7 @@ class Conjunto:
 
         produto_operacao = itertools.product(
             self.elementos, conjunto.elementos)
-        conjunto_cartesiano = Conjunto("{self.nome} * {conjunto.nome}")
+        conjunto_cartesiano = Conjunto(f"{self.nome} * {conjunto.nome}")
 
         for produto_atual in produto_operacao:
             conjunto_cartesiano.inserir(produto_atual)
