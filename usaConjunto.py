@@ -4,9 +4,11 @@ import pprint as pp
 
 Conjunto = Conjuntos.Conjunto
 
-A = Conjunto("A", 1, 2, (2, 9))
-B = Conjunto("B")
-C = Conjunto("C")
+A = Conjunto("A", 1, 2, 3)
+B = Conjunto("B", 'a', 'b', 'c')
+C = Conjunto("C", 1, 2, 4, 5)
+D = Conjunto("D", A, 1, 2)
+E = Conjunto("E", B, C)
 
 # A.inserir(B)
 
@@ -21,8 +23,7 @@ C = Conjunto("C")
 # print(A.eh_igual(B))
 
 # # Interseção e União
-print(A.intersecao(B).elementos)
+# print(A.intersecao(B).elementos)
 # B.uniao(A).string()
-
-# pp.pprint(A.conjunto_das_partes().elementos)
+print(D.conjunto_das_partes().string())
 # pp.pprint(A.produto_cartesiano(C).elementos)

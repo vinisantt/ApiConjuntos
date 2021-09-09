@@ -6,13 +6,18 @@ operacoes = {}  # Operações feitas são guardadas aqui, para motivos de otimiz
 universo = []   # Conjunto que contém todos os elementos já criados
 
 
-def remove_virgulas(texto: str) -> str: return texto.replace(",", "")
+def remove_virgulas(
+    texto: str) -> str: return texto.replace(",", "")
 
 
 def adiciona_chave_inicial(texto: str) -> str: return texto.replace("(", "{")
 
 
 def adiciona_chave_final(texto: str) -> str: return texto.replace(")", "}")
+
+
+def remove_virgulas_adicionais(texto: str) -> str:
+    return texto.replace(",,", "").replace(",}", "}")
 
 
 def tratar_conjunto(conjuntos: str) -> str:
@@ -88,8 +93,8 @@ class Conjunto:
         if conjunto[-1] == ',':
             conjunto = conjunto[:-1]
 
-        conjunto = conjunto.replace(
-            "[", "").replace("]", "").replace("'", "") + "}"
+        conjunto = remove_virgulas_adicionais(conjunto.replace(
+            "[", "").replace("]", "").replace("'", "") + "}")
 
         return conjunto
 
@@ -397,7 +402,18 @@ class Conjunto:
             combinacoes = list(itertools.combinations(elementos, indice))
             for conjuntos in combinacoes:
                 try:
-                    conjuntos = tratar_conjunto(str(conjuntos))
+                    if any(isinstance(conjunto, Conjunto)
+                           for conjunto in conjuntos):
+                        conjunto_string = ''
+                        for conjunto in conjuntos:
+                            if isinstance(conjunto, Conjunto):
+                                conjunto_string += '{' + \
+                                    str(conjunto.elementos) + '},'
+                            else:
+                                conjunto_string += str(conjunto) + ','
+                        conjuntos = tratar_conjunto(conjunto_string)
+                    else:
+                        conjuntos = tratar_conjunto(str(conjuntos))
                     ultimo_caractere = conjuntos[-2]
                     if ultimo_caractere == ',':
                         conjunto_das_partes.inserir(remove_virgulas(conjuntos))
@@ -425,16 +441,21 @@ class Conjunto:
         if conjunto.eh_vazio():
             return self
 
-        produto_operacao = itertools.product(self.elementos, conjunto.elementos)
+        produto_operacao = itertools.product(
+            self.elementos, conjunto.elementos)
         conjunto_cartesiano = Conjunto(f"{self.nome} * {conjunto.nome}")
 
         for produto_atual in produto_operacao:
-            if isinstance(produto_atual[0], Conjunto) and isinstance(produto_atual[1], Conjunto):
-                conjunto_cartesiano.inserir(f"{{{{{produto_atual[0].elementos}}},{{{produto_atual[1].elementos}}}}}")
+            if isinstance(produto_atual[0], Conjunto) and isinstance(
+                    produto_atual[1], Conjunto):
+                conjunto_cartesiano.inserir(
+                    f"{{{{{produto_atual[0].elementos}}},{{{produto_atual[1].elementos}}}}}")
             elif isinstance(produto_atual[0], Conjunto) and not isinstance(produto_atual[1], Conjunto):
-                conjunto_cartesiano.inserir(f"{{{produto_atual[0].elementos}}},{produto_atual[1]}}}")
+                conjunto_cartesiano.inserir(
+                    f"{{{produto_atual[0].elementos}}},{produto_atual[1]}}}")
             elif not isinstance(produto_atual[0], Conjunto) and isinstance(produto_atual[1], Conjunto):
-                conjunto_cartesiano.inserir(f"{{{{{produto_atual[0]}}},{{{produto_atual[1].elementos}}}}}")
+                conjunto_cartesiano.inserir(
+                    f"{{{{{produto_atual[0]}}},{{{produto_atual[1].elementos}}}}}")
             else:
                 conjunto_cartesiano.inserir(produto_atual)
 
